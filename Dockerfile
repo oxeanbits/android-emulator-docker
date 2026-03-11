@@ -4,13 +4,12 @@ FROM debian:bookworm-slim
 # Install dependencies and Java 25
 RUN apt update && \
     apt install gnupg gnupg2 git wget unzip gcc-multilib libglu1 curl -y && \
-    wget https://download.oracle.com/java/25/latest/jdk-25_linux-x64_bin.deb && \
-    apt install ./jdk-25_linux-x64_bin.deb && \
-    ln -sfn "$(find /usr/lib/jvm -maxdepth 1 -type d -name 'jdk-25*oracle*' | head -n 1)" /usr/lib/jvm/jdk-oracle && \
-    rm -rf jdk-25_linux-x64_bin.deb
+    wget https://download.oracle.com/java/25/archive/jdk-25.0.1_linux-x64_bin.deb && \
+    apt install ./jdk-25.0.1_linux-x64_bin.deb && \
+    rm -rf jdk-25.0.1_linux-x64_bin.deb
 
-ENV JAVA_HOME=/usr/lib/jvm/jdk-oracle/
-ENV PATH=/usr/lib/jvm/jdk-oracle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV JAVA_HOME=/usr/lib/jvm/jdk-25.0.1-oracle-x64/
+ENV PATH=/usr/lib/jvm/jdk-25.0.1-oracle-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## Install Android
 ENV ANDROID_SDK_HOME=/usr/lib/android-sdk
