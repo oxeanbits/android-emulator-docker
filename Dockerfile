@@ -1,15 +1,15 @@
 # This Dockerfile creates a android enviroment prepared to run integration tests
 FROM debian:bookworm-slim
 
-# Install dependencies and Java 22
+# Install dependencies and Java 25
 RUN apt update && \
     apt install gnupg gnupg2 git wget unzip gcc-multilib libglu1 curl -y && \
-    wget https://download.oracle.com/java/22/archive/jdk-22.0.2_linux-x64_bin.deb && \
-    apt install ./jdk-22.0.2_linux-x64_bin.deb && \
-    rm -rf jdk-22.0.2_linux-x64_bin.deb
+    wget https://download.oracle.com/java/25/archive/jdk-25.0.1_linux-x64_bin.deb && \
+    apt install ./jdk-25.0.1_linux-x64_bin.deb && \
+    rm -rf jdk-25.0.1_linux-x64_bin.deb
 
-ENV JAVA_HOME=/usr/lib/jvm/jdk-22.0.2-oracle-x64/
-ENV PATH=/usr/lib/jvm/jdk-22.0.2-oracle-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV JAVA_HOME=/usr/lib/jvm/jdk-25.0.1-oracle-x64/
+ENV PATH=/usr/lib/jvm/jdk-25.0.1-oracle-x64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## Install Android
 ENV ANDROID_SDK_HOME=/usr/lib/android-sdk
@@ -24,7 +24,7 @@ ENV PATH=$ANDROID_SDK_HOME/cmdline-tools/tools/bin:$JAVA_HOME/bin:/usr/local/sbi
 ENV EMULATOR_IMAGE "system-images;android-24;google_apis;x86_64"
 
 RUN yes | sdkmanager --update
-RUN yes | sdkmanager "platform-tools" "platforms;android-27" "build-tools;27.0.0" "build-tools;28.0.3" "build-tools;31.0.0" "build-tools;33.0.0" "build-tools;35.0.0" "platforms;android-35" "extras;android;m2repository" "extras;google;m2repository" "emulator" $EMULATOR_IMAGE
+RUN yes | sdkmanager "platform-tools" "platforms;android-27" "build-tools;27.0.0" "build-tools;28.0.3" "build-tools;31.0.0" "build-tools;33.0.0" "build-tools;36.0.0" "platforms;android-36" "extras;android;m2repository" "extras;google;m2repository" "emulator" $EMULATOR_IMAGE
 
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/emulator
 
