@@ -25,7 +25,7 @@ ENV PATH=$ANDROID_SDK_HOME/cmdline-tools/latest/bin:$JAVA_HOME/bin:/usr/local/sb
 ENV EMULATOR_IMAGE "system-images;android-24;google_apis;x86_64"
 
 RUN yes | sdkmanager --update
-RUN yes | sdkmanager "platform-tools" "platforms;android-27" "build-tools;27.0.0" "build-tools;28.0.3" "build-tools;31.0.0" "build-tools;33.0.0" "build-tools;36.0.0" "build-tools;37.0.0" "platforms;android-36" "platforms;android-37.2" "extras;android;m2repository" "extras;google;m2repository" "emulator" $EMULATOR_IMAGE
+RUN yes | sdkmanager "platform-tools" "build-tools;36.0.0" "build-tools;37.0.0" "platforms;android-36" "platforms;android-37.2" "emulator" $EMULATOR_IMAGE
 
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/emulator
 
